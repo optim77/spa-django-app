@@ -1,0 +1,21 @@
+{% extends 'spacex/base.html' %}
+{% block title %} SellIt | Edit {% endblock %}
+{% block main %}
+    <div class="container add-form">
+        {% if messages %}
+            <p class="messages">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </p>
+        {% endif %}
+
+        <form action="{% url 'update_item' id %}" method="post">
+            {% csrf_token %}
+
+            {{ form }}
+            <br>
+            <input type="submit" class="btn btn-success btn-add-new" value="Edit">
+        </form>
+    </div>
+{% endblock %}

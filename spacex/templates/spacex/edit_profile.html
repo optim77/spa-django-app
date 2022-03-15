@@ -1,0 +1,11 @@
+{% extends 'spacex/base.html' %}
+{% block title %} SellIt | Edit Profile {% endblock %}
+{% block main %}
+
+    <form action="">
+        {% csrf_token %}
+            {{ form }}
+        <input type="submit" class="btn btn-primary" value="Update">
+    </form>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'spacex/base.html' %}
+{% block title %} SellIt | Sing Up {% endblock %}
+{% block main %}
+
+    <div class="container login-tab">
+
+        {% if messages %}
+            <p class="messages">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </p>
+        {% endif %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary" value="Sing Up">
+        </form>
+        <br>
+        <br>
+        <p>Have an account ?</p>
+        <a href="{% url 'login_page' %}">Login</a>
+    </div>
+
+{% endblock %}

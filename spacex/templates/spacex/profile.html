@@ -1,0 +1,30 @@
+{% extends 'spacex/base.html' %}
+{% block title %} SellIt | Profile {% endblock %}
+{% block main %}
+
+    <div class="container">
+        {{ user.username }}
+        {{ user.email }}
+        <a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit profile</a>
+    </div>
+
+    <div class="container">
+        <hr>
+        <div class="row">
+        <p>Your items {{ items.count }}</p>
+            {% for i in items %}
+                <div class="col-3 explore-item">
+                    <a class="text-dark" href="{% url 'item' i.id %}">
+                        <img class="explore-image" src="{{ i.image }}" alt="item-image">
+                        <p>{{ i.name }}</p>
+                        <p class="price-category">{{ i.price }} $</p>
+                    </a>
+                    <a class="btn btn-primary" href="{% url 'update_item' i.id %}">Edit</a>
+                    <a class="btn btn-danger" href="{% url 'delete_item' i.id %}">Delete</a>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
