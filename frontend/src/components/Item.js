@@ -2,6 +2,18 @@ import React, {useState, useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import axios from 'axios';
 
+function DeleteItem(){
+    const [deleted, setDeleted] = React.useState()
+    const id = document.getElementById('itemIdContainer').getAttribute('data-value')
+    useEffect(() => {
+        axios.post(`/delete_item/${id}/`).then(response => {
+            setDeleted(true)
+            console.log(response)
+        }).catch(response => {
+            console.log(response)
+        })
+    }, [])
+}
 
 export default function ShowSingleItem(){
 
@@ -15,12 +27,15 @@ export default function ShowSingleItem(){
     }, [])
     if(item !== undefined){
 
+
+
         let buttons = null;
-        if ((localStorage.getItem('auth') && localStorage.getItem('id') == item[0][0].owner) | localStorage.getItem('is_staff')  ){
+        const edit = '/edit/' + item[0][0].id
+        if ((localStorage.getItem('auth') && localStorage.getItem('id') === item[0][0].owner) || localStorage.getItem('is_staff')  ){
             buttons = (
                 <>
-                    <button className="btn btn-primary m-2">Edit</button>
-                    <button className="btn btn-danger">Delete</button>
+                    <Link to={edit}  className="btn btn-primary m-2">Edit</Link>
+                    <button onClick={DeleteItem} className="btn btn-danger">Delete</button>
                 </>
             )
         }else{
@@ -30,8 +45,7 @@ export default function ShowSingleItem(){
                 </>
             )
         }
-        console.log(buttons)
-        //console.log(item[1][0])
+
         const [similiar_items] = item[1]
         const similiar = similiar_items.map(x => {
             return (
@@ -50,6 +64,7 @@ export default function ShowSingleItem(){
             <>
                 <div className="container">
                     <div className="row">
+                        <div id="itemIdContainer" data-value={item[0][0].id} hidden="1">1</div>
                         <div className="col-12 text-center item-head-name">
                             <p>{item[0][0].name}</p>
                         </div>

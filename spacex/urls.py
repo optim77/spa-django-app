@@ -17,17 +17,19 @@ urlpatterns = [
     path('item/<int:id>', views.get_item, name='item'),
     path('sign/', views.sign, name='sign'),
     path('add_new/', views.add_new, name='add_new'),
-    path('profile/', views.account, name='profile'),
+    # path('profile/', views.account, name='profile'),
     path('get_random/', views.get_random, name='get_random'),
     path('get_categories/', views.get_categories, name='get_categories'),
+    path('delete/<int:id>/', views.delete_item, name='delete_item'),
+    path('edit/<str:id>/', views.edit_item, name='update_item'),
+
 
     # path('vendor/<int:id>', views.vendor, name='vendor'),
     # path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('csrf/', views.csrf),
+    path('login_user/', views.login_user, name='login_user')
+
     # path('login/', views.login_page, name='login_page'),
     # path('sign_up/', views.sign_up, name='sign_page'),
     # path('logout/', views.logout_user, name='logout'),
-    # path('edit/<str:id>/', views.update_item, name='update_item'),
-    # path('delete/<int:id>.', views.delete_item, name='delete_item'),
-    path('csrf/', views.csrf),
-    path('login_user/', views.login_user, name='login_user')
 ]

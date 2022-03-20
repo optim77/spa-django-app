@@ -17,8 +17,7 @@ export default function Header(){
     }
     let staffActions = null
 
-    console.log(localStorage.getItem('is_staff'))
-    if(localStorage.getItem('is_staff') == 'true'){
+    if(localStorage.getItem('is_staff') === 'true'){
         staffActions = (
             <>
                 <button className="text-white nav-cat btn btn-success">Add Category</button>

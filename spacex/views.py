@@ -148,23 +148,6 @@ def item(request, id):
     }
     return render(request, 'spacex/item.html', context)
 
-
-# @login_required(login_url='/login')
-# def delete_item(request, id):
-#     try:
-#         Item.objects.filter(id=id).delete()
-#         messages.success(request, 'Item was deleted')
-#         return redirect('main')
-#     except:
-#         messages.error(request, 'Something gone wrong, try later')
-#
-#
-# def register(request):
-#     context = {
-#
-#     }
-#     return render(request, 'spacex/sign.html', context)
-
 #
 # @login_required(login_url='/login')
 # def add_new_item(request):
@@ -339,5 +322,31 @@ def add_new(request):
     return JsonResponse(response, safe=False)
 
 
-def account(request):
-    return 1
+def edit_item(request, id):
+    if request.method == 'POST':
+        cat = Category.objects.get(name=request.POST.get('cat'))
+        Item.objects.filter(id=id).update(
+            name=request.POST.get('name'),
+            description=request.POST.get('description'),
+            image=request.POST.get('image'),
+            price=request.POST.get('price'),
+            category=cat,
+        )
+    item = Item.objects.get(id=id)
+    serializer = ItemSerializer(item, many=False)
+    return JsonResponse(serializer.data, safe=False)
+
+
+def delete_item(request, id):
+
+    Item.objects.filter(id=id).delete()
+    return redirect('main')
+
+
+
+def register(request):
+    context = {
+
+    }
+    return render(request, 'spacex/sign.html', context)
+

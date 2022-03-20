@@ -13,6 +13,7 @@ import Category from './components/Category'
 import Item from './components/Item'
 import AddNew from "./components/AddItem";
 import Account from "./components/Account";
+import Edit from "./components/Edit";
 import axios from 'axios';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Contact from './components/Contact';
@@ -44,6 +45,9 @@ ReactDOM.render(
                     </Route>
                     <Route path="/profile/">
                         <Account/>
+                    </Route>
+                    <Route path="/edit/:id">
+                        <Edit/>
                     </Route>
                 </Switch>
                 <Footer/>

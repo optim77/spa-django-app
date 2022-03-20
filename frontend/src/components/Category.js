@@ -14,6 +14,16 @@ export default function Category(){
         })
     }, [])
 
+    let staffActions = null
+
+    if(localStorage.getItem('is_staff') === 'true'){
+        staffActions = (
+            <>
+                <button className="text-white nav-cat btn btn-success">Add Category</button>
+            </>
+        )
+    }
+
     if (items){
         const container = items.map(x => {
             return(
