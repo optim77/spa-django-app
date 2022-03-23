@@ -20,7 +20,7 @@ export default function Header(){
     if(localStorage.getItem('is_staff') === 'true'){
         staffActions = (
             <>
-                <button className="text-white nav-cat btn btn-success">Add Category</button>
+                <Link to="/add_category/" className="text-white nav-cat btn btn-success">Add Category</Link>
             </>
         )
     }

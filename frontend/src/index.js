@@ -14,6 +14,7 @@ import Item from './components/Item'
 import AddNew from "./components/AddItem";
 import Account from "./components/Account";
 import Edit from "./components/Edit";
+import AddCategory from "./components/AddCategory";
 import axios from 'axios';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Contact from './components/Contact';
@@ -48,6 +49,9 @@ ReactDOM.render(
                     </Route>
                     <Route path="/edit/:id">
                         <Edit/>
+                    </Route>
+                    <Route path="/add_category/">
+                        <AddCategory/>
                     </Route>
                 </Switch>
                 <Footer/>

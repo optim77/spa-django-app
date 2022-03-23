@@ -22,12 +22,12 @@ urlpatterns = [
     path('get_categories/', views.get_categories, name='get_categories'),
     path('delete/<int:id>/', views.delete_item, name='delete_item'),
     path('edit/<str:id>/', views.edit_item, name='update_item'),
-
-
+    path('csrf/', views.csrf),
+    path('login_user/', views.login_user, name='login_user'),
+    path('add_category/', views.add_category, name='add_category')
     # path('vendor/<int:id>', views.vendor, name='vendor'),
     # path('edit_profile/', views.edit_profile, name='edit_profile'),
-    path('csrf/', views.csrf),
-    path('login_user/', views.login_user, name='login_user')
+
 
     # path('login/', views.login_page, name='login_page'),
     # path('sign_up/', views.sign_up, name='sign_page'),

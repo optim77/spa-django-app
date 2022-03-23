@@ -11,6 +11,7 @@ from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.auth.models import Permission
+from django.template.defaultfilters import slugify
 from .forms import *
 from .models import *
 
@@ -335,6 +336,20 @@ def edit_item(request, id):
     item = Item.objects.get(id=id)
     serializer = ItemSerializer(item, many=False)
     return JsonResponse(serializer.data, safe=False)
+
+
+def add_category(request):
+    if request.method == 'POST':
+        cat = Category.objects.create(
+            name=request.POST.get('name'),
+            description=request.POST.get('description'),
+            image=request.POST.get('image'),
+            slug=slugify(request.POST.get('name'))
+        )
+        response = {'saved': True}
+    else:
+        response = {'saved': False}
+    return JsonResponse(response, safe=False)
 
 
 def delete_item(request, id):
