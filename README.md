@@ -4,6 +4,6 @@ A web application, based on Django and Node.js. Inspired on applications like al
 
 ## Tech
 
-- [node.js]
-- [Django] 
-- [SQL]
+- node.js
+- Django
+- SQL
